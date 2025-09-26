@@ -3,6 +3,7 @@
 
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="$HOME/.cargo/bin:$PATH"
+export EDITOR="nvim"
 
 ZSH_THEME="rkj-repos"
 
@@ -35,20 +36,11 @@ alias lt='ls --tree'
 
 # qemu-images
 alias q-arch="qemu-system-x86_64 -enable-kvm -m 4096 -boot a -hda arch.img"
-
-# Nvim Config
-alias nvim-rust="NVIM_APPNAME=nvim-rust nvim"
-alias nvim-custom="NVIM_APPNAME=nvim-custom nvim"
-
-# Set-up FZF key bindings (CTRL R for fuzzy history finder)
-source <(fzf --zsh)
+alias nvim-jonkero="NVIM_APPNAME=nvim-jonkero nvim"
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
-
-
-export EDITOR="NVIM_APPNAME=nvim-rust nvim"
 
 . "$HOME/.local/bin/env"
