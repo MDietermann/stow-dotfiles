@@ -2,7 +2,6 @@
 local telescope = require("telescope.builtin")
 local whichkey = require("which-key")
 local cmp = require("cmp")
-local luasnip = require("luasnip")
 
 whichkey.add({
 	-- Find (Telescope)
@@ -196,4 +195,57 @@ whichkey.add({
 		desc = "Open LazyGit Filter",
 		mode = "n",
 	},
+
+	-- LSP
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+	once = true,
+	callback = function(ev)
+		vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+
+		-- Define mappings using the reliable nested-table format.
+		-- This format works best with `whichkey.register` for buffer-local keys.
+		local mappings = {
+			-- Mappings for Normal Mode
+			g = {
+                name = "+Goto",
+                d = { vim.lsp.buf.definition, "Definition" },
+                i = { vim.lsp.buf.implementation, "Implementation" },
+                r = { vim.lsp.buf.references, "References" },
+            },
+            k = {
+                [" "] = { vim.lsp.buf.hover, "Hover" },
+                ["D"] = { vim.lsp.buf.type_definition, "Type Definition" },
+                ["d"] = { vim.diagnostic.open_float, "Line Diagnostics" },
+                ["r"] = {
+                    name = "+Rename",
+                    n = { vim.lsp.buf.rename, "Rename Symbol" },
+                },
+            },
+            a = {
+                name = "+Code",
+                a = { vim.lsp.buf.code_action, "Code Action" },
+                f = {
+                    function()
+                        vim.lsp.buf.format({ async = true })
+                    end,
+                    "Format Document",
+                },
+			},
+			-- Mappings for Visual Mode
+			v = {
+				["<leader>"] = {
+					["c"] = {
+						name = "+Code",
+						a = { vim.lsp.buf.code_action, "Code Action" },
+					},
+				},
+			},
+		}
+
+		-- Register the mappings for the current buffer.
+		whichkey.register(mappings, { buffer = ev.buf })
+	end,
 })
