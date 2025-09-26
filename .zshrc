@@ -33,12 +33,12 @@ alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
 
+
 # qemu-images
 alias q-arch="qemu-system-x86_64 -enable-kvm -m 4096 -boot a -hda arch.img"
 
 # Nvim Config
-alias nvim-rust="NVIM_APPNAME=nvim-rust nvim"
-alias nvim-custom="NVIM_APPNAME=nvim-custom nvim"
+alias lazyvim-tex="NVIM_APPNAME=lazyvim-tex nvim"
 
 # Set-up FZF key bindings (CTRL R for fuzzy history finder)
 source <(fzf --zsh)
