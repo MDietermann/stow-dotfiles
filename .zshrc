@@ -4,6 +4,7 @@ source ~/.bashrc
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="$HOME/.cargo/bin:$PATH"
+export EDITOR="nvim"
 
 ZSH_THEME="rkj-repos"
 
@@ -36,6 +37,7 @@ alias lt='ls --tree'
 
 # qemu-images
 alias q-arch="qemu-system-x86_64 -enable-kvm -m 4096 -boot a -hda arch.img"
+alias nvim-jonkero="NVIM_APPNAME=nvim-jonkero nvim"
 
 # Nvim Config
 alias lazyvim-tex="NVIM_APPNAME=lazyvim-tex nvim"
@@ -47,8 +49,5 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
-
-
-export EDITOR="NVIM_APPNAME=nvim-rust nvim"
 
 . "$HOME/.local/bin/env"
